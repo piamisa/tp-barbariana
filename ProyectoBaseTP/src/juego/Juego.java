@@ -8,6 +8,8 @@ public class Juego extends InterfaceJuego
 {
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
+	private Fondo fondo;
+	private Computadora computadora;
 	
 	// Variables y métodos propios de cada grupo
 	// ...
@@ -15,10 +17,16 @@ public class Juego extends InterfaceJuego
 	Juego()
 	{
 		// Inicializa el objeto entorno
-		this.entorno = new Entorno(this, "Boss Rabbit Rabber - Grupo ... - v1", 600, 600);
+		this.entorno = new Entorno(this, "Boss Rabbit Rabber - Grupo 7. - v1", 800, 600);
 		
 		// Inicializar lo que haga falta para el juego
-		// ...
+		this.fondo = new Fondo(0, 0);
+
+		this.computadora = new Computadora(70, 90, 80, 80);
+
+
+
+
 
 		// Inicia el juego!
 		this.entorno.iniciar();
@@ -33,8 +41,10 @@ public class Juego extends InterfaceJuego
 	public void tick()
 	{
 		// Procesamiento de un instante de tiempo
-		// ...
-		
+		this.fondo.dibujarPisos(entorno);
+
+		this.computadora.dibujarse(entorno);
+
 
 	}
 	
