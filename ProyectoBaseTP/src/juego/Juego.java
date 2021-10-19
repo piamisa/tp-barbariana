@@ -10,6 +10,9 @@ public class Juego extends InterfaceJuego
 	private Entorno entorno;
 	private Fondo fondo;
 	private Computadora computadora;
+	private Velociraptor velociraptor;
+	private Laser laser;
+	
 	
 	// Variables y métodos propios de cada grupo
 	// ...
@@ -23,10 +26,8 @@ public class Juego extends InterfaceJuego
 		this.fondo = new Fondo(0, 0);
 
 		this.computadora = new Computadora(70, 90, 80, 80);
-
-
-
-
+		
+		this.velociraptor = new Velociraptor();
 
 		// Inicia el juego!
 		this.entorno.iniciar();
@@ -45,6 +46,36 @@ public class Juego extends InterfaceJuego
 
 		this.computadora.dibujarse(entorno);
 
+		this.velociraptor.dibujarse(entorno);
+
+		//Movimiento de los velociraptor
+		
+		if (velociraptor.getX() < entorno.ancho() - velociraptor.getAncho() / 2){
+			
+			velociraptor.mover();
+			
+		} else {
+			
+			velociraptor.cambiarDireccionMovimiento();
+			
+		}
+		
+		if (velociraptor.getX() > velociraptor.getAncho() / 2) {
+			
+			velociraptor.mover();
+			
+		} else {
+			
+			velociraptor.cambiarDireccionMovimiento();
+			
+		}
+		
+	/*	laser = velociraptor.disparar();
+		
+		laser.dibujarse(entorno);
+		
+		laser.mover(); */
+		
 
 	}
 	
