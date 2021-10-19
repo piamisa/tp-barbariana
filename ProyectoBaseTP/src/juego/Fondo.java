@@ -7,26 +7,54 @@ import java.awt.*;
 public class Fondo {
 
     private int x, y;
-    private int ancho, alto;
+    private double ancho, alto, vacio;
 
-    public Fondo(int x, int y) {
-        this.x = x;
+    public Fondo(int x, int y, double ancho, double alto, double vacio) {
+        this.x = x; //Hay que ver si nos sirven x y
         this.y = y;
+        this.ancho = ancho;
+        this.alto = alto;
+        this.vacio = vacio;
     }
+
+
 
     public void dibujarPisos(Entorno entorno){
-        //Planta Baja
-        entorno.dibujarRectangulo(entorno.ancho()/2, 590, 800.0, 15.0,0, Color.WHITE);
 
-        //Primer piso
-        entorno.dibujarRectangulo(300, 450, entorno.ancho() - 200, 15, 0, Color.WHITE);
+        //PB
+        entorno.dibujarRectangulo(entorno.ancho() / 2, entorno.alto() - this.alto, ancho, alto, 0, Color.WHITE);
 
-        //Segundo Piso
-        entorno.dibujarRectangulo(500, 310 , entorno.ancho() - 200, 15, 0 ,Color.WHITE);
+        //1P
+        entorno.dibujarRectangulo((entorno.ancho() - vacio) / 2, entorno.alto() - (entorno.alto() / 4) - this.alto, ancho - vacio, alto, 0, Color.WHITE);
 
-        //Tercer Piso
-        entorno.dibujarRectangulo(300, 170, entorno.ancho() - 200, 15, 0, Color.WHITE);
+        //2P
+        entorno.dibujarRectangulo((entorno.ancho() + vacio) / 2, entorno.alto() - (entorno.alto() / 4) * 2 - this.alto, ancho - vacio, alto, 0, Color.WHITE);
+
+        //3P
+        entorno.dibujarRectangulo((entorno.ancho() - vacio) / 2, entorno.alto() - (entorno.alto() / 4) * 3 - this.alto, ancho - vacio, alto, 0, Color.WHITE);
+
+        //4P
+        entorno.dibujarRectangulo((entorno.ancho() + vacio) / 2, entorno.alto() - this.alto, ancho - vacio, alto, 0, Color.WHITE);
+
     }
 
+    public int getX() {
+        return x;
+    }
 
+    public int getY() {
+        return y;
+    }
+
+    public double getAncho() {
+        return ancho;
+    }
+
+    public double getAlto() {
+        return alto;
+    }
+
+    public double getVacio() {
+        return vacio;
+    }
 }

@@ -20,7 +20,7 @@ public class Juego extends InterfaceJuego
 		this.entorno = new Entorno(this, "Boss Rabbit Rabber - Grupo 7. - v1", 800, 600);
 		
 		// Inicializar lo que haga falta para el juego
-		this.fondo = new Fondo(0, 0);
+		this.fondo = new Fondo(0, 0, 800, 15, 200);
 
 		this.computadora = new Computadora(70, 90, 80, 80);
 
