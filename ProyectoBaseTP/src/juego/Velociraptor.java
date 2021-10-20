@@ -15,7 +15,7 @@ public class Velociraptor {
 	public Velociraptor() {
 
 		this.x = 140.0;
-		this.y = 145.0;
+		this.y = 108.0;
 
 		this.ancho = 40.0;
 		this.alto = 40.0;
@@ -132,9 +132,10 @@ public class Velociraptor {
 
 	}
 
-/*  public boolean colisionaConPiso(Fondo f) {
-
-
+/*	public boolean colisionaConPiso(Fondo f) {
+    	
+    	
+    
 	}
 
 	public static void crearVelociraptors() {
