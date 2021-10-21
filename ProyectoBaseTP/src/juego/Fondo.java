@@ -16,6 +16,20 @@ public class Fondo {
         this.alto = alto;
         this.vacio = vacio;
     }
+    
+    //PRUEBA
+    
+    public Fondo(int x, int y, double ancho, double alto) {
+    	
+        this.x = x; 
+        
+        this.y = y;	
+        
+        this.ancho = ancho;
+        
+        this.alto = alto;
+        
+    }
 
 
 
@@ -36,6 +50,12 @@ public class Fondo {
         //4P
         entorno.dibujarRectangulo((entorno.ancho() + vacio) / 2, entorno.alto() - this.alto, ancho - vacio, alto, 0, Color.WHITE);
 
+    }
+    
+    public void dibujarse(Entorno e) {
+    	
+    	e.dibujarRectangulo(this.x, this.y, this.ancho, this.alto, 0, Color.WHITE);
+    	
     }
 
     public int getX() {

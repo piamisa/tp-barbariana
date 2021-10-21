@@ -1,7 +1,6 @@
 package juego;
 
 import java.awt.Color;
-
 import entorno.*;
 
 public class Velociraptor {
@@ -15,7 +14,7 @@ public class Velociraptor {
 	public Velociraptor() {
 
 		this.x = 140.0;
-		this.y = 108.0;
+		this.y = 108.5;
 
 		this.ancho = 40.0;
 		this.alto = 40.0;
@@ -32,7 +31,7 @@ public class Velociraptor {
 
 		if (trayectoria != 'v' && trayectoria != 'h') {
 
-			throw new RuntimeException ("La trayectoria no es v�lida");
+			throw new RuntimeException ("La trayectoria no es valida");
 
 		} else {
 
@@ -56,7 +55,7 @@ public class Velociraptor {
 
 		if (c != 'i' && c != 'd' && c != 's') {
 
-			throw new RuntimeException ("La direcci�n especificada es incorrecta");
+			throw new RuntimeException ("La direccion especificada es incorrecta");
 
 		}
 
@@ -86,7 +85,7 @@ public class Velociraptor {
 
 			} else {
 
-				throw new RuntimeException("La trayectoria y la direcci�n de movimiento no coinciden");
+				throw new RuntimeException("La trayectoria y la direccion de movimiento no coinciden");
 
 			}
 
@@ -132,13 +131,7 @@ public class Velociraptor {
 
 	}
 
-/*	public boolean colisionaConPiso(Fondo f) {
-    	
-    	
-    
-	}
-
-	public static void crearVelociraptors() {
+/*	public static void crearVelociraptors() {
 
 
 
@@ -172,12 +165,6 @@ public class Velociraptor {
 
 	}
 
-	public boolean chocaConEntorno(Entorno e) {
-
-		return (this.x > this.ancho / 2 || this.x < e.ancho() - this.ancho / 2);
-
-	}
-
 	public double getX() {
 
 		return x;
@@ -188,6 +175,12 @@ public class Velociraptor {
 
 		return y;
 
+	}
+
+	public void setY(double y) {
+		
+		this.y = y;
+		
 	}
 
 	public double getAncho() {

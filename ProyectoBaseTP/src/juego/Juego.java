@@ -1,8 +1,6 @@
 package juego;
 
 
-import java.awt.Color;
-
 import entorno.Entorno;
 import entorno.InterfaceJuego;
 
@@ -10,10 +8,13 @@ public class Juego extends InterfaceJuego
 {
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
-	private Fondo fondo;
+//	private Fondo fondo;
 	private Computadora computadora;
 	private Velociraptor velociraptor;
 	private Laser laser;
+	private Fondo[] pisos;
+	
+	private Fondo base;
 	
 	
 	// Variables y métodos propios de cada grupo
@@ -25,12 +26,41 @@ public class Juego extends InterfaceJuego
 		this.entorno = new Entorno(this, "Boss Rabbit Rabber - Grupo 7. - v1", 800, 600);
 		
 		// Inicializar lo que haga falta para el juego
-		this.fondo = new Fondo(0, 0, 800, 15, 200);
+		
+		//Pisos: 135, 250, 365, 480 (Se puede modificar)
+		
+		pisos = new Fondo[4];
+		
+		int arranque = 135;
+		
+		for (int i = 0; i < pisos.length; i++) {
+			
+			if (i % 2 != 0) {
+				
+				pisos[i] = new Fondo(entorno.ancho()/2 + 200, arranque, entorno.ancho(), 15);
+				
+				arranque += 115;
+				
+			} else {
+				
+				pisos[i] = new Fondo(entorno.ancho()/2 - 200, arranque, entorno.ancho(), 15);
+				
+				arranque += 115;
+				
+			}
+			
+		}
+		
+		//Base: 480 + 115 = 595
+		
+		base = new Fondo(entorno.ancho()/2, 595, entorno.ancho(), 20);
+		
+//		this.fondo = new Fondo(0, 0, 800, 15, 200);
 
 		this.computadora = new Computadora(70, 90, 80, 80);
 		
 		this.velociraptor = new Velociraptor();
-
+		
 		// Inicia el juego!
 		this.entorno.iniciar();
 	}
@@ -44,7 +74,16 @@ public class Juego extends InterfaceJuego
 	public void tick()
 	{
 		// Procesamiento de un instante de tiempo
-		this.fondo.dibujarPisos(entorno);
+		
+	//	this.fondo.dibujarPisos(entorno);
+		
+		for (int i = 0; i < pisos.length; i++) {
+			
+			pisos[i].dibujarse(entorno);
+			
+		}
+		
+		this.base.dibujarse(entorno);
 
 		this.computadora.dibujarse(entorno);
 
@@ -76,8 +115,7 @@ public class Juego extends InterfaceJuego
 		
 		laser.dibujarse(entorno);
 		
-		laser.mover(); */
-		
+		laser.mover(); */	
 
 	}
 	
