@@ -9,8 +9,8 @@ public class Velociraptor {
 
 	private double angulo, factorMovimiento;
 
-	private char trayectoria, direccionMovimiento; /* trayectoria = h: horizontal, v: vertical;
-													  direccionMovimiento = v: s ; = h: i, d */
+	private char trayectoria, direccionMovimiento; /* trayectoria = h (horizontal), v: (vertical);
+													  direccionMovimiento = v: s (sur); direccionMovimiento = h: i (izquierda) /d (derecha) */
 	public Velociraptor() {
 
 		this.x = 140.0;
@@ -119,13 +119,13 @@ public class Velociraptor {
 
 			this.setDireccionMovimiento('i');
 
-			return;
+			 y = y + 115.0; //Cuando y = 108.5 + (115 * 4) y haga el cambio de direccion se tiene que eliminar el objeto
 
 		} else if (this.direccionMovimiento == 'i') {
 
 			this.setDireccionMovimiento('d');
 
-			return;
+			y = y + 115.0;
 
 		}
 
@@ -169,6 +169,10 @@ public class Velociraptor {
 
 		return x;
 
+	}
+
+	public void setX() {
+		this.x = x;
 	}
 
 	public double getY() {
