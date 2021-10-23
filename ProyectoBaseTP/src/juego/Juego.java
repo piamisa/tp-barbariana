@@ -1,6 +1,8 @@
 package juego;
 
 
+import java.awt.Color;
+
 import entorno.Entorno;
 import entorno.InterfaceJuego;
 
@@ -11,9 +13,11 @@ public class Juego extends InterfaceJuego {
     private Computadora computadora;
     private Velociraptor velociraptor;
     private Laser laser;
+    private boolean puedeDisparar;
     private Fondo[] pisos;
-
     private Fondo base;
+    private int puntos = 0, piso = 4;
+    
 
 
     // Variables y métodos propios de cada grupo
@@ -41,12 +45,13 @@ public class Juego extends InterfaceJuego {
 
         //Base: 480 + 115 = 595
 
-        base = new Fondo(entorno.ancho() / 2, 595, entorno.ancho(), 20);
+        base = new Fondo(entorno.ancho() / 2, 595, entorno.ancho(), 15);
 
-//		this.fondo = new Fondo(0, 0, 800, 15, 200);
-
-        this.computadora = new Computadora(70, 90, 80, 80);
+        this.computadora = new Computadora(70, 50, 80, 80);
+        
         this.velociraptor = new Velociraptor();
+        
+        puedeDisparar = true;
 
         // Inicia el juego!
         this.entorno.iniciar();
@@ -60,8 +65,8 @@ public class Juego extends InterfaceJuego {
      */
     public void tick() {
         // Procesamiento de un instante de tiempo
-
-        //	this.fondo.dibujarPisos(entorno);
+    	
+    	entorno.dibujarRectangulo(entorno.ancho()/2, entorno.alto()/2, entorno.ancho(), entorno.alto(), 0, Color.darkGray);
 
         for (int i = 0; i < pisos.length; i++) {
             pisos[i].dibujarse(entorno);
@@ -77,21 +82,39 @@ public class Juego extends InterfaceJuego {
             velociraptor.mover();
         } else {
             velociraptor.cambiarDireccionMovimiento();
+            velociraptor.setY(velociraptor.getY() + 115);
+            piso--;
         }
         if (velociraptor.getX() > velociraptor.getAncho() / 2) {
             velociraptor.mover();
         } else {
             velociraptor.cambiarDireccionMovimiento();
+            velociraptor.setY(velociraptor.getY() + 115);
+            piso--;
         }
 		
 	/*	laser = velociraptor.disparar();
 		
 		laser.dibujarse(entorno);
-		
+	
 		laser.mover(); */
-
+        
+        entorno.escribirTexto("Piso: " + piso , 700, 50);
+        
+        //Falta poner una condicion previa al disparo
+        
+        if (!puedeDisparar) {
+        	laser = null;
+        } else {
+        	laser = velociraptor.disparar();
+        	laser.dibujarse(entorno);
+        	laser.mover();
+        }
+        if (laser != null) {
+        	laser.dibujarse(entorno);
+        	laser.mover();
+        }
     }
-
 
     @SuppressWarnings("unused")
     public static void main(String[] args) {

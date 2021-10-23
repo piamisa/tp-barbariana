@@ -16,11 +16,11 @@ public class Laser {
 		
 		this.y = y;
 		
-		this.ancho = 20;
+		this.ancho = 15;
 		
 		this.alto = 10;
 		
-		this.factorMovimiento = 15;
+		this.factorMovimiento = 10;
 		
 		this.angulo = angulo;
 		
@@ -37,6 +37,23 @@ public class Laser {
 		this.x += this.factorMovimiento * Math.cos(this.angulo);
 		
 	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public int getAncho() {
+		return ancho;
+	}
+
+	public int getAlto() {
+		return alto;
+	}
+	
 	
 /*	public boolean chocaConBarbarianna(Barbarianna b) { 
 
@@ -46,5 +63,7 @@ public class Laser {
 	}
 	
 	*/
+	
+	
 	
 }

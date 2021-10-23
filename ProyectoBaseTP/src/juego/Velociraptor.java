@@ -19,7 +19,7 @@ public class Velociraptor {
 		this.ancho = 40.0;
 		this.alto = 40.0;
 
-		this.factorMovimiento = 1.0;
+		this.factorMovimiento = 1;
 		this.angulo = 0;
 
 		this.trayectoria = 'h';
@@ -119,13 +119,13 @@ public class Velociraptor {
 
 			this.setDireccionMovimiento('i');
 
-			 y = y + 115.0; //Cuando y = 108.5 + (115 * 4) y haga el cambio de direccion se tiene que eliminar el objeto
+			return; //Cuando y = 108.5 + (115 * 4) y haga el cambio de direccion se tiene que eliminar el objeto
 
 		} else if (this.direccionMovimiento == 'i') {
 
 			this.setDireccionMovimiento('d');
 
-			y = y + 115.0;
+			return;
 
 		}
 
@@ -160,8 +160,16 @@ public class Velociraptor {
 	}
 
 	public Laser disparar() {
-
-		return new Laser((int)this.x, (int)this.y, this.angulo);
+		
+		if (this.direccionMovimiento == 'd') {
+			
+			return new Laser((int)this.x , (int)this.y, this.angulo); // x++
+			
+		} else {
+			
+			return new Laser((int)this.x, (int)this.y, this.angulo); // x--
+			
+		}
 
 	}
 
@@ -171,7 +179,7 @@ public class Velociraptor {
 
 	}
 
-	public void setX() {
+	public void setX(double x) {
 		this.x = x;
 	}
 
