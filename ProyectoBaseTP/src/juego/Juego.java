@@ -13,13 +13,10 @@ public class Juego extends InterfaceJuego {
     private Computadora computadora;
     private Velociraptor velociraptor;
     private Laser laser;
-    private boolean puedeDisparar;
     private Fondo[] pisos;
     private Fondo base;
     private int puntos = 0, piso = 4;
     
-
-
     // Variables y métodos propios de cada grupo
     // ...
 
@@ -47,12 +44,12 @@ public class Juego extends InterfaceJuego {
 
         base = new Fondo(entorno.ancho() / 2, 595, entorno.ancho(), 15);
 
+        //Computadora
         this.computadora = new Computadora(70, 50, 80, 80);
         
+        //Velociraptor
         this.velociraptor = new Velociraptor();
-        
-        puedeDisparar = true;
-
+    
         // Inicia el juego!
         this.entorno.iniciar();
     }
@@ -66,33 +63,38 @@ public class Juego extends InterfaceJuego {
     public void tick() {
         // Procesamiento de un instante de tiempo
     	
+    	//Pisos y fondo
     	entorno.dibujarRectangulo(entorno.ancho()/2, entorno.alto()/2, entorno.ancho(), entorno.alto(), 0, Color.darkGray);
-
+    	
         for (int i = 0; i < pisos.length; i++) {
             pisos[i].dibujarse(entorno);
         }
-
+        
         this.base.dibujarse(entorno);
+        
+        //Computadora
         this.computadora.dibujarse(entorno);
+        
+        //Velociraptor
         this.velociraptor.dibujarse(entorno);
-
+        	
         //Movimiento de los velociraptor
 
         if (velociraptor.getX() < entorno.ancho() - velociraptor.getAncho() / 2) {
-            velociraptor.mover();
+        	velociraptor.mover();
         } else {
-            velociraptor.cambiarDireccionMovimiento();
-            velociraptor.setY(velociraptor.getY() + 115);
-            piso--;
-        }
+        	velociraptor.cambiarDireccionMovimiento();
+        	velociraptor.setY(velociraptor.getY() + 115);
+        	piso--;
+          }
         if (velociraptor.getX() > velociraptor.getAncho() / 2) {
-            velociraptor.mover();
+        	velociraptor.mover();
         } else {
-            velociraptor.cambiarDireccionMovimiento();
-            velociraptor.setY(velociraptor.getY() + 115);
-            piso--;
+        	velociraptor.cambiarDireccionMovimiento();
+        	velociraptor.setY(velociraptor.getY() + 115);  
+        	piso--;
         }
-		
+        
 	/*	laser = velociraptor.disparar();
 		
 		laser.dibujarse(entorno);
@@ -101,19 +103,6 @@ public class Juego extends InterfaceJuego {
         
         entorno.escribirTexto("Piso: " + piso , 700, 50);
         
-        //Falta poner una condicion previa al disparo
-        
-        if (!puedeDisparar) {
-        	laser = null;
-        } else {
-        	laser = velociraptor.disparar();
-        	laser.dibujarse(entorno);
-        	laser.mover();
-        }
-        if (laser != null) {
-        	laser.dibujarse(entorno);
-        	laser.mover();
-        }
     }
 
     @SuppressWarnings("unused")
