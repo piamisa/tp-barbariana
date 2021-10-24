@@ -4,6 +4,7 @@ package juego;
 import java.awt.Color;
 
 import entorno.Entorno;
+import entorno.Herramientas;
 import entorno.InterfaceJuego;
 
 public class Juego extends InterfaceJuego {
@@ -47,7 +48,7 @@ public class Juego extends InterfaceJuego {
 
         base = new Fondo(entorno.ancho() / 2, 595, entorno.ancho(), 15);
 
-        this.computadora = new Computadora(70, 50, 80, 80);
+        this.computadora = new Computadora(70, 95, 80, 80);
         
         this.velociraptor = new Velociraptor();
         
@@ -67,6 +68,7 @@ public class Juego extends InterfaceJuego {
         // Procesamiento de un instante de tiempo
     	
     	entorno.dibujarRectangulo(entorno.ancho()/2, entorno.alto()/2, entorno.ancho(), entorno.alto(), 0, Color.darkGray);
+        //entorno.dibujarImagen(Herramientas.cargarImagen("imagenes/brick_wall.png"), entorno.ancho()/2, entorno.alto()/2, 0);
 
         for (int i = 0; i < pisos.length; i++) {
             pisos[i].dibujarse(entorno);
