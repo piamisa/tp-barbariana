@@ -17,7 +17,8 @@ public class Juego extends InterfaceJuego {
     //private Fondo[] pisos;
     private Fondo base;
     private Fondo wallpaper;
-    private int puntos = 0, piso = 4;
+    private int puntos = 0;
+  
     
     // Variables y métodos propios de cada grupo
     // ...
@@ -47,9 +48,6 @@ public class Juego extends InterfaceJuego {
         }
 
 */
-
-
-
         this.fondo = new Fondo(0,0,entorno.ancho(), 15);
         //Base: 480 + 115 = 595
 
@@ -89,29 +87,32 @@ public class Juego extends InterfaceJuego {
         this.velociraptor.dibujarse(entorno);
         	
         //Movimiento de los velociraptor
-
-        if (velociraptor.getX() < entorno.ancho() - velociraptor.getAncho() / 2 - fondo.getVacio()) {
+        if (velociraptor.getX() < 620) { //620 = 600 del ancho del piso + 20 de la mitad de ancho del velociraptor
         	velociraptor.mover();
-        } else {
-            velociraptor.setY(velociraptor.getY() + 120);
-        	velociraptor.cambiarDireccionMovimiento();
-        	piso--;
-          }
-        if (velociraptor.getX() > velociraptor.getAncho() / 2 ) {
+        } else {	
+        	if (velociraptor.getY() < 215) {  // Al piso actual se le resta 35, 15 del ancho del piso y 20 de la mitad del alto del velociraptor	
+        		velociraptor.setTrayectoria('v');	
+        	} else {	
+        		velociraptor.setTrayectoria('h');
+        	}
+        	if (velociraptor.getX() < entorno.ancho() - velociraptor.getAncho() / 2) {	//Condicion para ir a la derecha
+        		velociraptor.mover();
+        	} else {
+        		velociraptor.cambiarDireccionMovimiento();
+        	}
+        	if (velociraptor.getX() > velociraptor.getAncho() / 2 ) {  //Condicion para ir a la izquierda
         	velociraptor.mover();
-        } else {
-            velociraptor.setY(velociraptor.getY() + 120);
+        	} else {
         	velociraptor.cambiarDireccionMovimiento();
-        	piso--;
+        	}
         }
-        
 	/*	laser = velociraptor.disparar();
 		
 		laser.dibujarse(entorno);
 	
 		laser.mover(); */
         
-        entorno.escribirTexto("Piso: " + piso , 700, 50);
+        entorno.escribirTexto("X: " + velociraptor.getX() + " Y: " + velociraptor.getY() , 700, 50);
         
     }
 
