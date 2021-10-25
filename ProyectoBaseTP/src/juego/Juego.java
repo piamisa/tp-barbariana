@@ -14,7 +14,6 @@ public class Juego extends InterfaceJuego {
     private Computadora computadora;
     private Velociraptor velociraptor;
     private Laser laser;
-    private Barbarianna barbarianna;
     //private Fondo[] pisos;
     private Fondo base;
     private Fondo wallpaper;
@@ -49,9 +48,6 @@ public class Juego extends InterfaceJuego {
         }
 
 */
-
-
-
         this.fondo = new Fondo(0,0,entorno.ancho(), 15);
         //Base: 480 + 115 = 595
 
@@ -64,9 +60,6 @@ public class Juego extends InterfaceJuego {
         
         //Velociraptor
         this.velociraptor = new Velociraptor();
-        
-        //Barbarianna
-        this.barbarianna = new Barbarianna();
     
         // Inicia el juego!
         this.entorno.iniciar();
@@ -92,9 +85,6 @@ public class Juego extends InterfaceJuego {
         
         //Velociraptor
         this.velociraptor.dibujarse(entorno);
-        
-        //Barbarianna
-        this.barbarianna.dibujarse(entorno);
         	
         //Movimiento de los velociraptor
         if (velociraptor.getX() < 620) { //620 = 600 del ancho del piso + 20 de la mitad de ancho del velociraptor
