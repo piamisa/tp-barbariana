@@ -19,6 +19,5 @@ public class Computadora {
 
     public void dibujarse(Entorno entorno){
         entorno.dibujarImagen(Herramientas.cargarImagen("imagenes/computer.png"), this.x, this.y, 0);
-        //entorno.dibujarRectangulo(this.x, this.y, this.ancho, this.alto, 0, Color.YELLOW);
     }
 }
