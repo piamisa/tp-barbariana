@@ -47,7 +47,7 @@ public class Juego extends InterfaceJuego {
         this.fondo = new Fondo(0,0,entorno.ancho(), 15);
         //Base: 480 + 115 = 595
         //base = new Fondo(entorno.ancho() / 2, 595, entorno.ancho(), 15);
-        
+
         //Computadora
         this.computadora = new Computadora(70, 80, 80, 80);
         
