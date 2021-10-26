@@ -25,28 +25,7 @@ public class Juego extends InterfaceJuego {
 
         // Inicializar lo que haga falta para el juego
 
-        //Wallpaper
-
-
-        //Pisos: 135, 250, 365, 480
-
-/*
-        pisos = new Fondo[4];
-        int arranque = 135;
-        for (int i = 0; i < pisos.length; i++) {
-            if (i % 2 != 0) {
-                pisos[i] = new Fondo(entorno.ancho() / 2 + 200, arranque, entorno.ancho(), 15);
-                arranque += 115;
-            } else {
-                pisos[i] = new Fondo(entorno.ancho() / 2 - 200, arranque, entorno.ancho(), 15);
-                arranque += 115;
-            }
-        }
-
-*/
         this.fondo = new Fondo(0,0,entorno.ancho(), 15);
-        //Base: 480 + 115 = 595
-        //base = new Fondo(entorno.ancho() / 2, 595, entorno.ancho(), 15);
 
         //Computadora
         this.computadora = new Computadora(70, 80, 80, 80);
@@ -101,7 +80,7 @@ public class Juego extends InterfaceJuego {
         	if (velociraptor.getX() < 780) {
         		velociraptor.mover();
         	}	
-        }   
+        }
 		laser = velociraptor.disparar();
 		
 		laser.dibujarse(entorno);
