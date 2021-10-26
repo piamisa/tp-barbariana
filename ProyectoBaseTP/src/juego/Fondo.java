@@ -10,23 +10,19 @@ public class Fondo {
     private int x, y;
     private double ancho, alto;
     private double vacio = 200;
+    private Image fondo, pisos;
     
     public Fondo(int x, int y, double ancho, double alto) {
         this.x = x;
         this.y = y;
         this.ancho = ancho;
         this.alto = alto;
-    }
-
-    public Fondo() {
-    }
-
-    public void dibujarse(Entorno e) {
-    	e.dibujarRectangulo(this.x, this.y, this.ancho, this.alto, 0, Color.WHITE);
+        this.fondo = Herramientas.cargarImagen("imagenes/brick_wall.png");
+        this.pisos = Herramientas.cargarImagen("");
     }
 
     public void dibujarWallpaper(Entorno entorno){
-        entorno.dibujarImagen(Herramientas.cargarImagen("imagenes/brick_wall.png"), this.x, this.y,0);
+        entorno.dibujarImagen(fondo, entorno.ancho()/2, entorno.alto()/2, 0);
     }
 
     public void dibujarPisos(Entorno entorno, int cantPisos) {

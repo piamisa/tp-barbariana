@@ -2,9 +2,8 @@ package juego;
 
 
 import java.awt.Color;
-
+import java.awt.Font;
 import entorno.Entorno;
-import entorno.Herramientas;
 import entorno.InterfaceJuego;
 
 public class Juego extends InterfaceJuego {
@@ -14,9 +13,6 @@ public class Juego extends InterfaceJuego {
     private Computadora computadora;
     private Velociraptor velociraptor;
     private Laser laser;
-    //private Fondo[] pisos;
-    private Fondo base;
-    private Fondo wallpaper;
     private int puntos = 0;
   
     
@@ -32,7 +28,7 @@ public class Juego extends InterfaceJuego {
         //Wallpaper
 
 
-        //Pisos: 135, 250, 365, 480 (Se puede modificar)
+        //Pisos: 135, 250, 365, 480
 
 /*
         pisos = new Fondo[4];
@@ -50,11 +46,8 @@ public class Juego extends InterfaceJuego {
 */
         this.fondo = new Fondo(0,0,entorno.ancho(), 15);
         //Base: 480 + 115 = 595
-
         //base = new Fondo(entorno.ancho() / 2, 595, entorno.ancho(), 15);
-
-        this.wallpaper = new Fondo(400, 300, 800, 600);
-
+        
         //Computadora
         this.computadora = new Computadora(70, 80, 80, 80);
         
@@ -71,12 +64,15 @@ public class Juego extends InterfaceJuego {
      * actualizar el estado interno del juego para simular el paso del tiempo
      * (ver el enunciado del TP para mayor detalle).
      */
+    /**
+     *
+     */
     public void tick() {
         // Procesamiento de un instante de tiempo
     	
     	//Pisos y fondo
 
-        entorno.dibujarImagen(Herramientas.cargarImagen("imagenes/brick_wall.png"), entorno.ancho()/2, entorno.alto()/2, 0);
+        this.fondo.dibujarWallpaper(entorno);
 
         this.fondo.dibujarPisos(entorno, 4);
 
@@ -84,36 +80,37 @@ public class Juego extends InterfaceJuego {
         this.computadora.dibujarse(entorno);
         
         //Velociraptor
-        this.velociraptor.dibujarse(entorno);
+        this.velociraptor.dibujarImagen(entorno);
         	
         //Movimiento de los velociraptor
+        //Pisos: 135, 250, 365, 480
+        
         if (velociraptor.getX() < 620) { //620 = 600 del ancho del piso + 20 de la mitad de ancho del velociraptor
         	velociraptor.mover();
         } else {	
-        	if (velociraptor.getY() < 215) {  // Al piso actual se le resta 35, 15 del ancho del piso y 20 de la mitad del alto del velociraptor	
+        	if (velociraptor.getY() < 212) {  // Al piso actual se le resta 35, 15 del ancho del piso y 20 de la mitad del alto del velociraptor	
         		velociraptor.setTrayectoria('v');	
         	} else {	
         		velociraptor.setTrayectoria('h');
         	}
-        	if (velociraptor.getX() < entorno.ancho() - velociraptor.getAncho() / 2) {	//Condicion para ir a la derecha
-        		velociraptor.mover();
+        	if (velociraptor.getX() < entorno.ancho() - velociraptor.getAncho() / 2) {
+        		velociraptor.mover();		//Por predeterminado se mueve a la derecha, por eso no le asigno direccion
         	} else {
         		velociraptor.cambiarDireccionMovimiento();
         	}
-        	if (velociraptor.getX() > velociraptor.getAncho() / 2 ) {  //Condicion para ir a la izquierda
-        	velociraptor.mover();
-        	} else {
-        	velociraptor.cambiarDireccionMovimiento();
-        	}
-        }
+        	if (velociraptor.getX() < 780) {
+        		velociraptor.mover();
+        	}	
+        }   
 	/*	laser = velociraptor.disparar();
 		
 		laser.dibujarse(entorno);
 	
 		laser.mover(); */
         
-        entorno.escribirTexto("X: " + velociraptor.getX() + " Y: " + velociraptor.getY() , 700, 50);
-        
+        entorno.cambiarFont(Font.SANS_SERIF, 20, Color.orange);
+        entorno.escribirTexto("X: " + velociraptor.getX() + " Y: " + velociraptor.getY() , 600, 50);
+    
     }
 
     @SuppressWarnings("unused")
