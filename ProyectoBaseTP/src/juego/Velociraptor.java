@@ -80,9 +80,6 @@ public class Velociraptor {
     public void cambiarDireccionMovimiento() {
 
         if (this.direccionMovimiento == 'd') {
-          /*  if (this.getX() == 180){
-                this.setY(getY() + 50);
-            }*/
             this.setDireccionMovimiento('i');
             return; //Cuando y = 108.5 + (115 * 4) y haga el cambio de direccion se tiene que eliminar el objeto
         } else if (this.direccionMovimiento == 'i') {
