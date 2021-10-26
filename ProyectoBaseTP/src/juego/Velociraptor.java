@@ -15,7 +15,7 @@ public class Velociraptor {
     
     public Velociraptor() {
         this.x = 140.0;
-        this.y = 92.0;
+        this.y = 92.5;
 
         this.ancho = 40.0;
         this.alto = 40.0;
@@ -64,8 +64,8 @@ public class Velociraptor {
         }
     }
 
-    public static int posicionVelociraptorNulo(Velociraptor[] velociraptors) {
-        int i = 0;
+    public static int posicionVelociraptorNulo(Velociraptor[] velociraptors) { // Recorreria un arreglo de velociraptors 
+        int i = 0;															   // y retornaria la posicion en la que encuentra un null, caso contrario retorna -1
         while (i < velociraptors.length) {
             if (velociraptors[i] == null) {
                 return i;
@@ -76,9 +76,9 @@ public class Velociraptor {
     }
 
     public void cambiarDireccionMovimiento() {
-        if (this.direccionMovimiento == 'd') {
+        if (this.direccionMovimiento == 'd') {			//Cambia la direccion de movimiento del velociraptor por su opuesta
             this.setDireccionMovimiento('i');
-            return; //Cuando y = 108.5 + (115 * 4) y haga el cambio de direccion se tiene que eliminar el objeto
+            return; 
         } else if (this.direccionMovimiento == 'i') {
             this.setDireccionMovimiento('d');
             return;
@@ -102,19 +102,14 @@ public class Velociraptor {
 
     public void mover() {
         if (this.trayectoria == 'v') {
-            this.y += Math.sin(this.angulo) * this.factorMovimiento;
-        } else {
-            this.x += Math.cos(this.angulo) * this.factorMovimiento;
+            this.y += Math.sin(this.angulo) * this.factorMovimiento;	//Modifica las coordenadas x e y dependiendo de la trayectoria
+        } else {														//Si la trayectoria es vertical modifica la coordenada Y (Ya que la x es la misma)
+            this.x += Math.cos(this.angulo) * this.factorMovimiento;	//Si la trayectoria es horizontal modifica la coordenada X (Ya que Y va a ser la misma)
         }
     }
     
-    public Laser disparar() {
-
-        if (this.direccionMovimiento == 'd') {
-            return new Laser((int) this.x, (int) this.y, this.angulo); // x++
-        } else {
-            return new Laser((int) this.x, (int) this.y, this.angulo); // x--
-        }
+    public Laser disparar() {    
+    	return new Laser((int) this.x, (int) this.y, this.angulo); 
     }
 
     public double getX() {

@@ -83,12 +83,12 @@ public class Juego extends InterfaceJuego {
         this.velociraptor.dibujarImagen(entorno);
         	
         //Movimiento de los velociraptor
-        //Pisos: 135, 250, 365, 480
+        //Pisos: 92.5, 212.5, 332.5, 452.5, 572.5s  (La mitad de la altura del velociraptor se suma la mitad del alto del piso, y eso se resta a la posicion "Y" del piso actual)
         
         if (velociraptor.getX() < 620) { //620 = 600 del ancho del piso + 20 de la mitad de ancho del velociraptor
         	velociraptor.mover();
         } else {	
-        	if (velociraptor.getY() < 212) {  // Al piso actual se le resta 35, 15 del ancho del piso y 20 de la mitad del alto del velociraptor	
+        	if (velociraptor.getY() < 212.5) {  // Al piso actual se le resta 35, 15 del ancho del piso y 20 de la mitad del alto del velociraptor	
         		velociraptor.setTrayectoria('v');	
         	} else {	
         		velociraptor.setTrayectoria('h');
@@ -102,11 +102,11 @@ public class Juego extends InterfaceJuego {
         		velociraptor.mover();
         	}	
         }   
-	/*	laser = velociraptor.disparar();
+		laser = velociraptor.disparar();
 		
 		laser.dibujarse(entorno);
 	
-		laser.mover(); */
+		laser.mover(); 
         
         entorno.cambiarFont(Font.SANS_SERIF, 20, Color.orange);
         entorno.escribirTexto("X: " + velociraptor.getX() + " Y: " + velociraptor.getY() , 600, 50);
