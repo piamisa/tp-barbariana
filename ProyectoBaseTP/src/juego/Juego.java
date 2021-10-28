@@ -1,6 +1,5 @@
 package juego;
 
-
 import java.awt.Color;
 import java.awt.Font;
 import entorno.Entorno;
@@ -14,6 +13,7 @@ public class Juego extends InterfaceJuego {
     private Velociraptor velociraptor;
     private Laser laser;
     private int puntos = 0;
+    
     // Variables y métodos propios de cada grupo
     // ...
 
@@ -27,10 +27,10 @@ public class Juego extends InterfaceJuego {
 
         //Computadora
         this.computadora = new Computadora(70, 80, 80, 80);
-        
+
         //Velociraptor
         this.velociraptor = new Velociraptor();
-    
+
         // Inicia el juego!
         this.entorno.iniciar();
     }
@@ -46,19 +46,17 @@ public class Juego extends InterfaceJuego {
      */
     public void tick() {
         // Procesamiento de un instante de tiempo
-    	
-    	//Pisos y fondo
 
+        //Pisos y fondo
         this.fondo.dibujarWallpaper(entorno);
-
         this.fondo.dibujarPisos(entorno, 4);
 
         //Computadora
         this.computadora.dibujarse(entorno);
-        
+
         //Velociraptor
         this.velociraptor.dibujarse(entorno);
-        	
+
         //Movimiento de los velociraptor
         //Pisos: (4) 92.5, (3) 212.5, (2) 332.5, (1) 452.5, (0) 572.5 (La mitad de la altura del velociraptor se suma la mitad del alto del piso, y eso se resta a la posicion "Y" del piso actual)
         
@@ -86,21 +84,19 @@ public class Juego extends InterfaceJuego {
         	} else if (velociraptor.getY() == 332.5 && velociraptor.chocaConEntorno(entorno)) {    	         		
         			velociraptor.setTrayectoria('h');        		
         	}    	       	 	
-        }
+        }    	       	 	
         //Piso 2 y 1
         //...
         
         //Piso 1 y 0
         //...
-     
-		laser = velociraptor.disparar();	
+  
+		laser = velociraptor.disparar();
 		laser.dibujarse(entorno);
 		laser.mover(); 
         
         entorno.cambiarFont(Font.SANS_SERIF, 20, Color.orange);
-        entorno.escribirTexto("X: " + velociraptor.getX() + " Y: " + velociraptor.getY(), 400, 50);
-        entorno.escribirTexto("Choca con entorno: " + velociraptor.chocaConEntorno(entorno), 400, 100);
-    
+        entorno.escribirTexto("X: " + velociraptor.getX() + " Y: " + velociraptor.getY() , 600, 50);
     }
 
     @SuppressWarnings("unused")

@@ -35,9 +35,9 @@ public class Velociraptor {
         } else {
             this.trayectoria = trayectoria;
             if (trayectoria == 'h') {
-                this.angulo = Math.toRadians(0);	//Predeterminado: se mueve en horizontal hacia derecha, angulo 0°
+                this.angulo = Math.toRadians(0);	//Predeterminado: se mueve en horizontal hacia derecha, angulo 0ï¿½
             } else {
-                this.angulo = Math.toRadians(90);	//Si se cambia la trayectoria se mueve en vertical hacia el sur en angulo 90°
+                this.angulo = Math.toRadians(90);	//Si se cambia la trayectoria se mueve en vertical hacia el sur en angulo 90ï¿½
             }
         }
     }
@@ -78,7 +78,8 @@ public class Velociraptor {
     }
 
     public void cambiarDireccionMovimiento() {
-        if (this.direccionMovimiento == 'd') {			//Cambia la direccion de movimiento del velociraptor por su opuesta
+        if (this.direccionMovimiento == 'd') {
+		//Cambia la direccion de movimiento del velociraptor por su opuesta
             this.setDireccionMovimiento('i');
             return;     	
         } else if (this.direccionMovimiento == 'i') {
