@@ -14,8 +14,6 @@ public class Juego extends InterfaceJuego {
     private Velociraptor velociraptor;
     private Laser laser;
     private int puntos = 0;
-  
-    
     // Variables y métodos propios de cada grupo
     // ...
 
@@ -59,36 +57,49 @@ public class Juego extends InterfaceJuego {
         this.computadora.dibujarse(entorno);
         
         //Velociraptor
-        this.velociraptor.dibujarImagen(entorno);
+        this.velociraptor.dibujarse(entorno);
         	
         //Movimiento de los velociraptor
-        //Pisos: 92.5, 212.5, 332.5, 452.5, 572.5s  (La mitad de la altura del velociraptor se suma la mitad del alto del piso, y eso se resta a la posicion "Y" del piso actual)
+        //Pisos: (4) 92.5, (3) 212.5, (2) 332.5, (1) 452.5, (0) 572.5 (La mitad de la altura del velociraptor se suma la mitad del alto del piso, y eso se resta a la posicion "Y" del piso actual)
         
-        if (velociraptor.getX() < 620) { //620 = 600 del ancho del piso + 20 de la mitad de ancho del velociraptor
+        //Piso 4 y 3
+        if (velociraptor.getX() < 600) {
+        	velociraptor.mover(); //Por predeterminado se mueve a la derecha, por eso no le asigno direccion
+        } else if(velociraptor.getY() < 212.5) { // Al piso actual se le resta 35, 15 del ancho del piso y 20 de la mitad del alto del velociraptor		
+        	velociraptor.setTrayectoria('v');   		  	 	
+        	velociraptor.mover();   	
+        	velociraptor.setTrayectoria('h');		
+        	velociraptor.mover();      	
+        } else if (!velociraptor.chocaConEntorno(entorno)) {	
         	velociraptor.mover();
-        } else {	
-        	if (velociraptor.getY() < 212.5) {  // Al piso actual se le resta 35, 15 del ancho del piso y 20 de la mitad del alto del velociraptor	
-        		velociraptor.setTrayectoria('v');	
-        	} else {	
-        		velociraptor.setTrayectoria('h');
-        	}
-        	if (velociraptor.getX() < entorno.ancho() - velociraptor.getAncho() / 2) {
-        		velociraptor.mover();		//Por predeterminado se mueve a la derecha, por eso no le asigno direccion
-        	} else {
-        		velociraptor.cambiarDireccionMovimiento();
-        	}
-        	if (velociraptor.getX() < 780) {
+		} else {
+			velociraptor.cambiarDireccionMovimiento();	
+			velociraptor.mover();			 
+		}
+        //Piso 3 y 2
+        if (velociraptor.getY() >= 212.5 && velociraptor.getX() <= 200) {        
+        	if (velociraptor.getY() < 332.5){
+        		velociraptor.setTrayectoria('v');       		                 	
         		velociraptor.mover();
-        	}	
+        		velociraptor.setTrayectoria('h');
+        		velociraptor.cambiarDireccionMovimiento();
+        	} else if (velociraptor.getY() == 332.5 && velociraptor.chocaConEntorno(entorno)) {    	         		
+        			velociraptor.setTrayectoria('h');        		
+        	}    	       	 	
         }
-		laser = velociraptor.disparar();
-		
+        //Piso 2 y 1
+        //...
+        
+        //Piso 1 y 0
+        //...
+     
+		laser = velociraptor.disparar();	
 		laser.dibujarse(entorno);
-	
 		laser.mover(); 
         
         entorno.cambiarFont(Font.SANS_SERIF, 20, Color.orange);
-        entorno.escribirTexto("X: " + velociraptor.getX() + " Y: " + velociraptor.getY() , 600, 50);
+        entorno.escribirTexto("X: " + velociraptor.getX() + " Y: " + velociraptor.getY(), 400, 50);
+        entorno.escribirTexto("Choca con entorno: " + velociraptor.chocaConEntorno(entorno), 400, 100);
     
     }
 
