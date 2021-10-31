@@ -78,23 +78,16 @@ public class Velociraptor {
     }
 
     public void cambiarDireccionMovimiento() {
-        if (this.direccionMovimiento == 'd') {
-		//Cambia la direccion de movimiento del velociraptor por su opuesta
-            this.setDireccionMovimiento('i');
+        if (this.direccionMovimiento == 'd') {	     //Cambia la direccion de movimiento del velociraptor por su opuesta       
+        	this.setDireccionMovimiento('i');
             return;     	
         } else if (this.direccionMovimiento == 'i') {
             this.setDireccionMovimiento('d');
             return;
         }
     }
-
-/*	public static void crearVelociraptors() {
-
-		
-	} */
-
+    
     // USO CONTINUO
-
     public void dibujarse(Entorno e) {
         e.dibujarCirculo(this.x, this.y, this.radio, Color.cyan);
     }
