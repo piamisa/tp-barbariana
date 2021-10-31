@@ -92,8 +92,8 @@ public class Velociraptor {
         e.dibujarCirculo(this.x, this.y, this.radio, Color.cyan);
     }
     
-    public void dibujarImagen(Entorno e) {
-    	e.dibujarImagen(this.im, this.x, this.y, this.angulo, 1.2);
+    public void dibujarImagen(Entorno e) {		
+    	e.dibujarImagen(this.im, this.x, this.y, 0, 1.2);
     }
 
     public void mover() {

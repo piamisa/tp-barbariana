@@ -11,7 +11,7 @@ public class Juego extends InterfaceJuego {
     private Fondo fondo;
     private Computadora computadora;
     private Velociraptor[] velociraptor;
-    private Laser laser;
+    private Laser[] laser;
     private int cont = 0, num = 1;
     
     // Variables y métodos propios de cada grupo
@@ -26,13 +26,16 @@ public class Juego extends InterfaceJuego {
         this.fondo = new Fondo(0,0,entorno.ancho(), 15);
 
         //Computadora
-        this.computadora = new Computadora(70, 80, 80, 80);
+        this.computadora = new Computadora(70, 80);
 
         //Velociraptor
         this.velociraptor = new Velociraptor[5];
         for (int i = 0; i < velociraptor.length; i++) {
         	this.velociraptor[i] = new Velociraptor(); 	
         }
+        
+        //Laser
+        this.laser = new Laser[5]; 
         
         // Inicia el juego!
         this.entorno.iniciar();
@@ -59,7 +62,7 @@ public class Juego extends InterfaceJuego {
 
         //Velociraptor
         for (int i = 0; i < velociraptor.length; i++) {
-        	if (this.velociraptor[i] != null) {
+        	if (this.velociraptor[i] != null) {	        		        				
         		this.velociraptor[i].dibujarse(entorno);
         	}
         }
@@ -119,9 +122,10 @@ public class Juego extends InterfaceJuego {
         		}			
         	}	 	
         }
+        //Laser 
         for (int i = 0; i < velociraptor.length; i++) { 	
-        	laser = velociraptor[i].disparar();
-    		laser.dibujarse(entorno);
+        	laser[i] = velociraptor[i].disparar();
+        	laser[i].dibujarse(entorno); 	
         }    
         entorno.cambiarFont(Font.SANS_SERIF, 20, Color.orange);     
         entorno.escribirTexto("X: " + velociraptor[0].getX() + " Y: " + velociraptor[0].getY(), 400, 50);

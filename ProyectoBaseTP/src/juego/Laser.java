@@ -26,6 +26,10 @@ public class Laser {
 	public void mover() {	
 		this.x += this.factorMovimiento * Math.cos(this.angulo);	
 	}
+	
+	public boolean chocaConEntorno(Entorno e) {
+		return (this.x < this.ancho/2 || this.x > e.ancho() - this.ancho/2);	
+	}
 
 	public int getX() {
 		return x;

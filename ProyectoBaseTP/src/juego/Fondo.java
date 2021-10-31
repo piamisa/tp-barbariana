@@ -10,7 +10,8 @@ public class Fondo {
     private int x, y;
     private double ancho, alto;
     private double vacio = 200;
-    private Image fondo, pisos;
+    @SuppressWarnings("unused")
+	private Image fondo, pisos;
     
     public Fondo(int x, int y, double ancho, double alto) {
         this.x = x;
@@ -31,11 +32,9 @@ public class Fondo {
 
        for(int i = 1; i <= cantPisos; i++){ //120, 240, 360, 480
             if(i % 2 != 0){
-                entorno.dibujarRectangulo((entorno.ancho() - this.vacio) / 2, alturaArranque * i, this.ancho - this.vacio, this.alto, 0, Color.DARK_GRAY);
-
+                entorno.dibujarRectangulo((entorno.ancho() - this.vacio) / 2, alturaArranque * i, this.ancho - this.vacio, this.alto, 0, Color.DARK_GRAY);     
             } else {
                 entorno.dibujarRectangulo((entorno.ancho() + this.vacio) / 2, alturaArranque * i, this.ancho - this.vacio, this.alto, 0, Color.DARK_GRAY);
-
             }
         }
         //base: 600
