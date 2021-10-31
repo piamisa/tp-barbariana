@@ -28,7 +28,7 @@ public class Fondo {
 
     public void dibujarPisos(Entorno entorno, int cantPisos) {
 
-        double alturaArranque = (entorno.alto() / (cantPisos + 1));
+       double alturaArranque = (entorno.alto() / (cantPisos + 1));
 
        for(int i = 1; i <= cantPisos; i++){ //120, 240, 360, 480
             if(i % 2 != 0){

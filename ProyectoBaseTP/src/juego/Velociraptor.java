@@ -109,7 +109,7 @@ public class Velociraptor {
     }
     
     public Laser disparar() {    
-    	return new Laser((int) this.x, (int) this.y, this.angulo); 
+    	return new Laser((int)this.x, (int)this.y, this.angulo); 
     }
 
     public double getX() {

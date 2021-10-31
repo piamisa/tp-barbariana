@@ -34,9 +34,6 @@ public class Juego extends InterfaceJuego {
         	this.velociraptor[i] = new Velociraptor(); 	
         }
         
-        //Laser
-        this.laser = new Laser[5]; 
-        
         // Inicia el juego!
         this.entorno.iniciar();
     }
@@ -123,7 +120,8 @@ public class Juego extends InterfaceJuego {
         	}	 	
         }
         //Laser 
-        for (int i = 0; i < velociraptor.length; i++) { 	
+        for (int i = 0; i < velociraptor.length; i++) {
+        	this.laser = new Laser[5]; 
         	laser[i] = velociraptor[i].disparar();
         	laser[i].dibujarse(entorno); 	
         }    
