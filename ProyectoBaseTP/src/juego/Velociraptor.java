@@ -7,7 +7,8 @@ import entorno.*;
 
 public class Velociraptor {
 
-    private double x, y, ancho, alto;
+    private double x, y;
+    private int radio;
     private double angulo, factorMovimiento;
     private char trayectoria, direccionMovimiento; /* trayectoria = h (horizontal), v: (vertical);
 													  direccionMovimiento = v: s (sur); direccionMovimiento = h: i (izquierda) /d (derecha) */
@@ -17,8 +18,7 @@ public class Velociraptor {
         this.x = 140.0;
         this.y = 92.5;
 
-        this.ancho = 40.0;
-        this.alto = 40.0;
+        this.radio = 40;
 
         this.factorMovimiento = 1;
         this.angulo = 0;
@@ -53,10 +53,12 @@ public class Velociraptor {
             }
         } else if (this.trayectoria == 'h') {
             if (c == 'i' || c == 'd') {				//Los horizontales pueden ir hacia la izquierda o la derecha
-                this.direccionMovimiento = c;
-                this.angulo = Math.toRadians(0);
-                if (c == 'i') {						//El caso distinto al predeterminado cambia el angulo
-                    angulo += Math.toRadians(180);
+                if (c == 'd') {
+                	this.direccionMovimiento = c;
+                    this.angulo = Math.toRadians(0);
+                }
+                if (c == 'i') {						//El caso distinto al predeterminado cambia el angulo        
+                	this.angulo = Math.toRadians(180);
                 }
             } else {
                 throw new RuntimeException("La trayectoria y la direccion de movimiento no coinciden");
@@ -64,7 +66,7 @@ public class Velociraptor {
         }
     }
 
-    public static int posicionVelociraptorNulo(Velociraptor[] velociraptors) { // Recorreria un arreglo de velociraptors 
+	public static int posicionVelociraptorNulo(Velociraptor[] velociraptors) { // Recorreria un arreglo de velociraptors 
         int i = 0;															   // y retornaria la posicion en la que encuentra un null, caso contrario retorna -1
         while (i < velociraptors.length) {
             if (velociraptors[i] == null) {
@@ -76,29 +78,22 @@ public class Velociraptor {
     }
 
     public void cambiarDireccionMovimiento() {
-        if (this.direccionMovimiento == 'd') {
-		//Cambia la direccion de movimiento del velociraptor por su opuesta
-            this.setDireccionMovimiento('i');
-            return; 
+        if (this.direccionMovimiento == 'd') {	     //Cambia la direccion de movimiento del velociraptor por su opuesta       
+        	this.setDireccionMovimiento('i');
+            return;     	
         } else if (this.direccionMovimiento == 'i') {
             this.setDireccionMovimiento('d');
             return;
         }
     }
-
-/*	public static void crearVelociraptors() {
-
-		
-	} */
-
+    
     // USO CONTINUO
-
     public void dibujarse(Entorno e) {
-        e.dibujarRectangulo(this.x, this.y, this.ancho, this.alto, this.angulo, Color.cyan);
+        e.dibujarCirculo(this.x, this.y, this.radio, Color.cyan);
     }
     
-    public void dibujarImagen(Entorno e) {
-    	e.dibujarImagen(this.im, this.x, this.y, this.angulo, 1.2);
+    public void dibujarImagen(Entorno e) {		
+    	e.dibujarImagen(this.im, this.x, this.y, 0, 1.2);
     }
 
     public void mover() {
@@ -109,8 +104,12 @@ public class Velociraptor {
         }
     }
     
+    public boolean chocaConEntorno(Entorno e) {
+    	return (this.x < this.radio/2 || this.x > e.ancho() - this.radio/2 || this.y > e.alto() - this.radio/2); 	
+    }
+    
     public Laser disparar() {    
-    	return new Laser((int) this.x, (int) this.y, this.angulo); 
+    	return new Laser((int)this.x, (int)this.y, this.angulo); 
     }
 
     public double getX() {
@@ -129,13 +128,6 @@ public class Velociraptor {
         this.y = y;
     }
 
-    public double getAncho() {
-        return ancho;
-    }
-
-    public double getAlto() {
-        return alto;
-    }
 	public char getTrayectoria() {
 		return trayectoria;
 	}
@@ -144,6 +136,12 @@ public class Velociraptor {
 		return direccionMovimiento;
 	}
 	
+    public double getAngulo() {
+		return angulo;
+	}
     
+    public int getRadio() {
+    	return radio;
+    }
 
 }

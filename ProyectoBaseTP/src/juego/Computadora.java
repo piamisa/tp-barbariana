@@ -3,18 +3,17 @@ package juego;
 import entorno.Entorno;
 import entorno.Herramientas;
 
-import java.awt.*;
-
 public class Computadora {
 
     private int x, y;
-    private int ancho, alto;
+    @SuppressWarnings("unused")
+	private int ancho, alto;
 
-    public Computadora(int x, int y, int ancho, int alto) {
+    public Computadora(int x, int y) {
         this.x = x;
         this.y = y;
-        this.ancho = ancho;
-        this.alto = alto;
+        this.ancho = 80;
+        this.alto = 80;
     }
 
     public void dibujarse(Entorno entorno){
