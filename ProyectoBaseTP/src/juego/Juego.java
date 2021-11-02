@@ -19,6 +19,7 @@ public class Juego extends InterfaceJuego {
     private boolean d = true;
     private boolean a = true;
     private int cont = 0, num = 1;
+    private boolean condicionDisparo = true;
 
 
     // Variables y métodos propios de cada grupo
@@ -31,7 +32,6 @@ public class Juego extends InterfaceJuego {
         // Inicializar lo que haga falta para el juego
 
         this.fondo = new Fondo(0,0,entorno.ancho(), 15);
-
         //Computadora
         this.computadora = new Computadora(70, 80);
 
@@ -116,16 +116,23 @@ public class Juego extends InterfaceJuego {
 
         //Rayo
 
-        if(entorno.sePresiono(entorno.TECLA_ABAJO)) {
-            this.rayo = new Rayo(barba.getX(), barba.getY());
-            this.a = this.d;
-            this.r = true;
-
+        if (condicionDisparo){
+            if(entorno.sePresiono(entorno.TECLA_ABAJO)) {
+                this.rayo = new Rayo(barba.getX(), barba.getY());
+                this.a = this.d;
+                this.r = true;
+                this.condicionDisparo = false;
+            }
         }
 
+
         if(this.r) {
-            this.rayo.dibujarse(entorno);
-            rayo.mover(a);
+            if (this.rayo.getX() > 12 && this.rayo.getX() < 788){
+                this.rayo.dibujarse(entorno);
+                rayo.mover(a);
+            } else {
+                condicionDisparo = true;
+            }
         }
         //Velociraptor
 
@@ -185,14 +192,13 @@ public class Juego extends InterfaceJuego {
         	}	 	
         }
         //Laser 
-        for (int i = 0; i < velociraptor.length; i++) {
+       for (int i = 0; i < velociraptor.length; i++) {
         	this.laser = new Laser[5]; 
         	laser[i] = velociraptor[i].disparar();
         	laser[i].dibujarse(entorno); 	
-        }    
+        }
         entorno.cambiarFont(Font.SANS_SERIF, 20, Color.orange);     
         entorno.escribirTexto("X: " + velociraptor[0].getX() + " Y: " + velociraptor[0].getY(), 400, 50);
-//>>>>>>> dbd9613b47982ccc3b10341b4cc4403fe1582bde
     }
          
     @SuppressWarnings("unused")

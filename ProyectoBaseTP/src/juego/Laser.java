@@ -19,7 +19,7 @@ public class Laser {
 	}
 	
 	public void dibujarse(Entorno e) {		
-		e.dibujarCirculo(this.x, this.y, this.radio, Color.RED);	
+		e.dibujarCirculo(this.x, this.y, this.radio, Color.YELLOW);
 	}
 	
 	public void mover() {	
@@ -36,17 +36,10 @@ public class Laser {
 
 	public int getY() {
 		return y;
-	}	
-	
-/*	public boolean chocaConBarbarianna(Barbarianna b) { 
-
-		
-		...
-		
 	}
-	
-	*/
-	
-	
+
+	public boolean chocaConBarbarianna(Barbariana b) {
+		return Math.sqrt(Math.pow(b.getX() - this.x, 2) + (Math.pow(b.getY() - this.y, 2))) <= this.radio * 2;
+	}
 	
 }

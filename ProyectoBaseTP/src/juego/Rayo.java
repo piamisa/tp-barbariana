@@ -26,8 +26,15 @@ public class Rayo {
         }else {
             x -= 8;
         }
-
-
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
 }
 
