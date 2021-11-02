@@ -35,9 +35,9 @@ public class Velociraptor {
         } else {
             this.trayectoria = trayectoria;
             if (trayectoria == 'h') {
-                this.angulo = Math.toRadians(0);	//Predeterminado: se mueve en horizontal hacia derecha, angulo 0�
+                this.angulo = Math.toRadians(0);	//Predeterminado: se mueve en horizontal hacia derecha, angulo 0
             } else {
-                this.angulo = Math.toRadians(90);	//Si se cambia la trayectoria se mueve en vertical hacia el sur en angulo 90�
+                this.angulo = Math.toRadians(90);	//Si se cambia la trayectoria se mueve en vertical hacia el sur en angulo 90
             }
         }
     }

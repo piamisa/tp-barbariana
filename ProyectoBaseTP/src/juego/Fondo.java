@@ -38,7 +38,7 @@ public class Fondo {
             }
         }
         //base: 600
-        entorno.dibujarRectangulo(entorno.ancho()/2, entorno.alto() - this.alto / 2, entorno.ancho(), this.alto, 0, Color.DARK_GRAY);
+        entorno.dibujarRectangulo(entorno.ancho()/2, entorno.alto() - this.alto / 2, entorno.ancho(), this.alto, 0, Color.PINK);
     }
 
     public int getX() {

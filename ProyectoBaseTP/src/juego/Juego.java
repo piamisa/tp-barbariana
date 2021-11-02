@@ -2,7 +2,11 @@ package juego;
 
 import java.awt.Color;
 import java.awt.Font;
+
+import javax.sound.sampled.Clip;
+
 import entorno.Entorno;
+import entorno.Herramientas;
 import entorno.InterfaceJuego;
 
 public class Juego extends InterfaceJuego {
@@ -13,7 +17,6 @@ public class Juego extends InterfaceJuego {
     private Velociraptor[] velociraptor;
     private Laser[] laser;
     private int cont = 0, num = 1;
-    
     // Variables y métodos propios de cada grupo
     // ...
 
@@ -32,8 +35,7 @@ public class Juego extends InterfaceJuego {
         this.velociraptor = new Velociraptor[5];
         for (int i = 0; i < velociraptor.length; i++) {
         	this.velociraptor[i] = new Velociraptor(); 	
-        }
-        
+        }     
         // Inicia el juego!
         this.entorno.iniciar();
     }
@@ -49,7 +51,6 @@ public class Juego extends InterfaceJuego {
      */
     public void tick() {
         // Procesamiento de un instante de tiempo
-
         //Pisos y fondo
         this.fondo.dibujarWallpaper(entorno);
         this.fondo.dibujarPisos(entorno, 4);
@@ -121,10 +122,14 @@ public class Juego extends InterfaceJuego {
         }
         //Laser 
         for (int i = 0; i < velociraptor.length; i++) {
-        	this.laser = new Laser[5]; 
-        	laser[i] = velociraptor[i].disparar();
-        	laser[i].dibujarse(entorno); 	
-        }    
+        	this.laser = new Laser[velociraptor.length]; 
+        	this.laser[i] = this.velociraptor[i].disparar();
+        	if (this.laser[i] != null) {				//Queda hacerlos mover y ver cada cuanto lo hacen...
+        		laser[i].dibujarLaser(entorno);
+        	}  
+        }
+        
+        
         entorno.cambiarFont(Font.SANS_SERIF, 20, Color.orange);     
         entorno.escribirTexto("X: " + velociraptor[0].getX() + " Y: " + velociraptor[0].getY(), 400, 50);
     }
