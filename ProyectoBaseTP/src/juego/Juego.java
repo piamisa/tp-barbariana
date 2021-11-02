@@ -2,11 +2,7 @@ package juego;
 
 import java.awt.Color;
 import java.awt.Font;
-
-import javax.sound.sampled.Clip;
-
 import entorno.Entorno;
-import entorno.Herramientas;
 import entorno.InterfaceJuego;
 
 public class Juego extends InterfaceJuego {
@@ -88,7 +84,6 @@ public class Juego extends InterfaceJuego {
                 this.d = true;
             }
         }
-
         if (barba.getX() > 10) {
             if(entorno.estaPresionada(entorno.TECLA_IZQUIERDA)) {
                 barba.moverIzquierda();
@@ -102,7 +97,6 @@ public class Juego extends InterfaceJuego {
                 barba.saltarDerecha();
             }
         }
-
         if(barba.getX() > 600 && barba.getX() < 700 && (barba.getY() == 445 || barba.getY() == 215)){
             if(entorno.sePresiono(entorno.TECLA_ARRIBA)){
                 barba.saltarIzquierda();
@@ -134,6 +128,7 @@ public class Juego extends InterfaceJuego {
                 condicionDisparo = true;
             }
         }
+        
         //Velociraptor
         if (num < 5) {
         	if (cont >= 250) {
@@ -181,27 +176,27 @@ public class Juego extends InterfaceJuego {
                 		velociraptor[i].setTrayectoria('h');             			 		  	 	     	                   	
                 	} 
                 } 
-        	} 		
+        	} 
+        	//Colision entorno/velociraptor
         	if (velociraptor[i].getY() >= 563.5 && velociraptor[i].getX() >= 760 && velociraptor[i].chocaConEntorno(entorno)) {   			
         		velociraptor[i] = null;       			
         		if (velociraptor[i] == null) {               		
         			velociraptor[i] = new Velociraptor();                
         			velociraptor[i].dibujarse(entorno);   	
         		}			
-        	}	 	
-        }
+        	}  	
+        }       
         //Laser 
-
         for (int i = 0; i < velociraptor.length; i++) {
         	this.laser = new Laser[velociraptor.length]; 
         	this.laser[i] = this.velociraptor[i].disparar();
-        	if (this.laser[i] != null) {				//Queda hacerlos mover y ver cada cuanto lo hacen...
+        	if (this.laser[i] != null) {
         		laser[i].dibujarLaser(entorno);
         	}  
         }
         
         entorno.cambiarFont(Font.SANS_SERIF, 20, Color.orange);     
-        entorno.escribirTexto("X: " + velociraptor[0].getX() + " Y: " + velociraptor[0].getY(), 400, 50);
+        entorno.escribirTexto("Enemigos eliminados: " + puntos, 50, 20);
     }
          
     @SuppressWarnings("unused")

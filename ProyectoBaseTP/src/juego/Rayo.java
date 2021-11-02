@@ -33,5 +33,17 @@ public class Rayo {
     public int getY() {
         return y;
     }
+    
+    public int getAncho() {
+    	return ancho;
+    }
+    
+    public int getAlto() {
+    	return alto;
+    }
+    
+    public boolean chocaConVelociraptor(Velociraptor v) {
+		return Math.sqrt(Math.pow(v.getX() - this.x, 2) + (Math.pow(v.getY() - this.y, 2))) <= this.ancho* 2;
+	}
 }
 
