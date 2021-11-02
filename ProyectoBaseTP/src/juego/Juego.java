@@ -15,8 +15,18 @@ public class Juego extends InterfaceJuego {
     private Fondo fondo;
     private Computadora computadora;
     private Velociraptor[] velociraptor;
+    private Barbariana barba;
+    private Rayo rayo;
     private Laser[] laser;
+    private int puntos = 0;
+    private boolean r = false;
+    private boolean d = true;
+    private boolean a = true;
     private int cont = 0, num = 1;
+    private boolean condicionDisparo = true;
+
+
+
     // Variables y métodos propios de cada grupo
     // ...
 
@@ -27,15 +37,18 @@ public class Juego extends InterfaceJuego {
         // Inicializar lo que haga falta para el juego
 
         this.fondo = new Fondo(0,0,entorno.ancho(), 15);
-
         //Computadora
         this.computadora = new Computadora(70, 80);
+
+        //Barbariana
+        this.barba = new Barbariana(100, entorno.alto() - 40);
 
         //Velociraptor
         this.velociraptor = new Velociraptor[5];
         for (int i = 0; i < velociraptor.length; i++) {
         	this.velociraptor[i] = new Velociraptor(); 	
         }     
+
         // Inicia el juego!
         this.entorno.iniciar();
     }
@@ -57,14 +70,71 @@ public class Juego extends InterfaceJuego {
 
         //Computadora
         this.computadora.dibujarse(entorno);
-
+        
         //Velociraptor
         for (int i = 0; i < velociraptor.length; i++) {
         	if (this.velociraptor[i] != null) {	        		        				
         		this.velociraptor[i].dibujarse(entorno);
         	}
         }
-        
+
+        //Barbariana
+        this.barba.dibujarse(entorno);
+
+        //Movimiento Barbariana
+        if (barba.getX() < entorno.ancho() - 10) {
+            if(entorno.estaPresionada(entorno.TECLA_DERECHA)) {
+                barba.moverDerecha();
+                this.d = true;
+            }
+        }
+
+        if (barba.getX() > 10) {
+            if(entorno.estaPresionada(entorno.TECLA_IZQUIERDA)) {
+                barba.moverIzquierda();
+                this.d = false;
+            }
+        }
+
+        //Salto Barbariana
+        if(barba.getX() > 110 && barba.getX() < 210 && (barba.getY() == 560 || barba.getY() == 330)){
+            if(entorno.sePresiono(entorno.TECLA_ARRIBA)){
+                barba.saltarDerecha();
+            }
+        }
+
+        if(barba.getX() > 600 && barba.getX() < 700 && (barba.getY() == 445 || barba.getY() == 215)){
+            if(entorno.sePresiono(entorno.TECLA_ARRIBA)){
+                barba.saltarIzquierda();
+            }
+        }
+
+        //Caida en el vacio
+        if(barba.getX() < 200 && (barba.getY() == 445 || barba.getY() == 215)){
+            barba.caer();
+        }
+        if(barba.getX() > 600 && (barba.getY() == 100 || barba.getY() == 330)){
+            barba.caer();
+        }
+
+        //Rayo
+        if (condicionDisparo){
+            if(entorno.sePresiono(entorno.TECLA_ABAJO)) {
+                this.rayo = new Rayo(barba.getX(), barba.getY());
+                this.a = this.d;
+                this.r = true;
+                this.condicionDisparo = false;
+            }
+        }
+        if(this.r) {
+            if (this.rayo.getX() > 12 && this.rayo.getX() < 788){
+                this.rayo.dibujarse(entorno);
+                rayo.mover(a);
+            } else {
+                condicionDisparo = true;
+            }
+        }
+        //Velociraptor
         if (num < 5) {
         	if (cont >= 250) {
         		num++;
@@ -121,6 +191,7 @@ public class Juego extends InterfaceJuego {
         	}	 	
         }
         //Laser 
+
         for (int i = 0; i < velociraptor.length; i++) {
         	this.laser = new Laser[velociraptor.length]; 
         	this.laser[i] = this.velociraptor[i].disparar();
@@ -128,7 +199,6 @@ public class Juego extends InterfaceJuego {
         		laser[i].dibujarLaser(entorno);
         	}  
         }
-        
         
         entorno.cambiarFont(Font.SANS_SERIF, 20, Color.orange);     
         entorno.escribirTexto("X: " + velociraptor[0].getX() + " Y: " + velociraptor[0].getY(), 400, 50);
