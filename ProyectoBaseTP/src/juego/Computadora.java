@@ -19,4 +19,21 @@ public class Computadora {
     public void dibujarse(Entorno entorno){
         entorno.dibujarImagen(Herramientas.cargarImagen("imagenes/computer.png"), this.x, this.y, 0);
     }
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public int getAncho() {
+		return ancho;
+	}
+
+	public int getAlto() {
+		return alto;
+	}
+    
 }

@@ -20,8 +20,7 @@ public class Juego extends InterfaceJuego {
     private boolean a = true;
     private int cont = 0, num = 1;
     private boolean condicionDisparo = true;
-
-
+    private boolean gano = false;
 
     // Variables y m√©todos propios de cada grupo
     // ...
@@ -195,8 +194,19 @@ public class Juego extends InterfaceJuego {
         	}  
         }
         
-        entorno.cambiarFont(Font.SANS_SERIF, 20, Color.orange);     
-        entorno.escribirTexto("Enemigos eliminados: " + puntos, 50, 20);
+        entorno.cambiarFont(Font.SANS_SERIF, 15, Color.orange);     
+        entorno.escribirTexto("Enemigos eliminados: " + puntos, 600, 600);
+        
+        if (barba.getX() == computadora.getX() && barba.getY() == 100) {
+        	this.gano = true;    	
+        }
+        else if (gano == true) {
+        	entorno.dibujarRectangulo(400, 300, 800, 600, 0, Color.WHITE);
+        	entorno.cambiarFont(Font.SANS_SERIF, 50, Color.BLACK);   
+        	entorno.escribirTexto("°GANASTE!", 250, 300);
+        	entorno.escribirTexto("Puntos: " + puntos, 250, 350);
+        }
+        
     }
          
     @SuppressWarnings("unused")
